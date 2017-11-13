@@ -32,10 +32,10 @@ class Queue:
     def Wq(self):
         raise NotImplementedError()
 
-    def Pn(self, n):
+    def P0(self):
         raise NotImplementedError()
 
-    def P0(self):
+    def Pn(self, n):
         raise NotImplementedError()
 
 
