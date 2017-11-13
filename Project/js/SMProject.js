@@ -2,6 +2,7 @@
 var app = angular.module('SMProject', ['ngRoute']);
 
 app.controller('Calculator', ['$scope', function ($scope) {
+    var Q = new MMc(30, 12, 5);
 }]);
 
 app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
