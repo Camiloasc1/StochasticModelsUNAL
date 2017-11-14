@@ -12,7 +12,26 @@ function MMc(la, mu, c) {
     this.la = la;
     this.mu = mu;
     this.c = c;
+
 }
+
+MMc.prototype.simulate = function(maxUsage,maxQueueLength, maxQueueTime){
+
+    console.log(this.c);
+    this.c = this.la/(maxUsage*this.mu)
+
+    this.c = Math.ceil(this.c)
+
+    while(this.calc_Lq() > maxQueueLength){
+        this.c = this.c + 1;
+    }
+
+    while(this.calc_Wq() > maxQueueTime){
+        this.c = this.c + 1;
+    }
+
+
+};
 
 MMc.prototype.calc_r = function () {
     return this.la / this.mu;

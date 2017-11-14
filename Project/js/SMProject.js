@@ -10,6 +10,11 @@ app.controller('Calculator', ['$scope', function ($scope) {
     $scope.servers = [{name: "", proportion: 1, serviceTime: 1.0, probability: 0.1, serviceRate: 60.0}];
     $scope.Q = new MMc(30, 12, 5);
 
+    $scope.simulate = function(){
+
+        $scope.Q.simulate($scope.restrictions.maxUsage,$scope.restrictions.maxQueueLength, $scope.restrictions.maxQueueTime);
+
+    };
     // $scope.$watch('parameters', function () {
     //     if ($scope.parameters.arrivalTime !== 0.0) {
     //         $scope.parameters.arrivalRate = 60.0 / $scope.parameters.arrivalTime;
