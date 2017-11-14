@@ -30,6 +30,19 @@
                     </fieldset>
                 </form>
             </div>
+            <div class="row">
+                <form class="form-horizontal">
+                    <fieldset>
+                        <legend>Result</legend>
+                        <label for="result" class="control-label">Required Servers</label>
+                        <input class="form-control" id="result" type="number" placeholder="Required Servers" disabled="disabled"
+                               ng-model="result">
+                        <button ng-click="solve()" class="btn btn-primary btn-raised">
+                            Calculate
+                        </button>
+                    </fieldset>
+                </form>
+            </div>
         </div>
         <div class="col-md-6">
             Here the service table.
