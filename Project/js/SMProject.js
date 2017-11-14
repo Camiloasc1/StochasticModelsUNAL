@@ -2,7 +2,12 @@
 var app = angular.module('SMProject', ['ngRoute']);
 
 app.controller('Calculator', ['$scope', function ($scope) {
-    $scope.maxUsage = 0.95;
+    // The known parameters
+    $scope.parameters = {arrivalTime: 5.0, arrivalRate: 12.0};
+    // The imposed restrictions to comply with
+    $scope.restrictions = {maxUsage: 0.95, maxQueueLength: 5, maxQueueTime: 5.0};
+    // servers list a.k.a shops in the shopping mall
+    $scope.servers = [{name: "", proportion: 1, serviceTime: 1.0, probability: 0.1, serviceRate: 60.0}];
     $scope.Q = new MMc(30, 12, 5);
 }]);
 
