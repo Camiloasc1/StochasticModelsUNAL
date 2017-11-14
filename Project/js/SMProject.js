@@ -3,12 +3,18 @@ var app = angular.module('SMProject', ['ngRoute']);
 
 app.controller('Calculator', ['$scope', function ($scope) {
     // The known parameters
-    $scope.parameters = {arrivalTime: 5.0, arrivalRate: 12.0};
+    $scope.parameters = {arrivalRate: 1.0};
     // The imposed restrictions to comply with
     $scope.restrictions = {maxUsage: 0.95, maxQueueLength: 5, maxQueueTime: 5.0};
     // servers list a.k.a shops in the shopping mall
     $scope.servers = [{name: "", proportion: 1, serviceTime: 1.0, probability: 0.1, serviceRate: 60.0}];
     $scope.Q = new MMc(30, 12, 5);
+
+    // $scope.$watch('parameters', function () {
+    //     if ($scope.parameters.arrivalTime !== 0.0) {
+    //         $scope.parameters.arrivalRate = 60.0 / $scope.parameters.arrivalTime;
+    //     }
+    // }, true);
 }]);
 
 app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
