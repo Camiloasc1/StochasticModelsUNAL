@@ -12,7 +12,6 @@ function MMc(la, mu, c) {
     this.la = la;
     this.mu = mu;
     this.c = c;
-
 }
 
 MMc.prototype.calc_r = function () {
@@ -59,7 +58,6 @@ MMc.prototype.calc_Pn = function (n) {
 };
 
 MMc.prototype.simulate = function (restrictions) {
-
     this.c = Math.ceil(this.la / (restrictions.maxUsage * this.mu));
 
     while (this.calc_Lq() > restrictions.maxQueueLength) {
