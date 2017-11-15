@@ -20,6 +20,40 @@ app.controller('Calculator', ['$scope', function ($scope) {
     //         $scope.parameters.arrivalRate = 60.0 / $scope.parameters.arrivalTime;
     //     }
     // }, true);
+
+    $scope.stores = [
+        {
+            'name' : 'Jhon Doe',
+            'prob_arrival' : 0.5,
+            'service_time' : 2
+        }
+    ];
+
+    $scope.addNew = function(store){
+        $scope.stores.push({
+            'name' : "",
+            'prob_arrival' : "",
+            'service_time' : ""
+        })
+    };
+
+    $scope.remove = function(){
+        var newDataList = [];
+        $scope.selectAll = false;
+        angular.forEach($scope.stores, function(store){
+            if(!store.selected){
+                newDataList.push(store);
+            }
+        });
+        $scope.stores = newDataList;
+    };
+
+    $scope.chekAll = function(){
+      $scope.selectedAll = !$scope.selectedAll;
+      angular.forEach($scope.stores, function(store){
+          store.selected = $scope.selectedAll;
+      });
+    };
 }]);
 
 app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
