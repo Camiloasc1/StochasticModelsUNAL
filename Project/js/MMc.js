@@ -15,25 +15,6 @@ function MMc(la, mu, c) {
 
 }
 
-MMc.prototype.simulate = function(maxUsage,maxQueueLength, maxQueueTime){
-
-    console.log(this.c);
-    this.c = this.la/(maxUsage*this.mu)
-
-    this.c = Math.ceil(this.c)
-
-    while(this.calc_Lq() > maxQueueLength){
-        this.c = this.c + 1;
-    }
-
-    while(this.calc_Wq() > maxQueueTime){
-        this.c = this.c + 1;
-    }
-
-    return this.c;
-
-};
-
 MMc.prototype.calc_r = function () {
     return this.la / this.mu;
 };
@@ -75,4 +56,19 @@ MMc.prototype.calc_Pn = function (n) {
     else {
         return res / (Math.pow(this.c, (n - this.c))) / factorial(this.c);
     }
+};
+
+MMc.prototype.simulate = function (maxUsage, maxQueueLength, maxQueueTime) {
+
+    this.c = Math.ceil(this.la / (maxUsage * this.mu));
+
+    while (this.calc_Lq() > maxQueueLength) {
+        this.c = this.c + 1;
+    }
+
+    while (this.calc_Wq() > maxQueueTime) {
+        this.c = this.c + 1;
+    }
+
+    return this.c;
 };
