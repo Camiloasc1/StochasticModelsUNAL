@@ -9,11 +9,10 @@ app.controller('Calculator', ['$scope', function ($scope) {
     // servers list a.k.a shops in the shopping mall
     $scope.servers = [{name: "", proportion: 1, serviceRate: 1.0, probability: 0.1}];
     $scope.result = 0.0;
-    $scope.Q = new MMc(30, 12, 5);
+    $scope.queue = new MMc(30, 12, 5);
 
     $scope.solve = function () {
-        $scope.result = $scope.Q.simulate($scope.restrictions.maxUsage,$scope.restrictions.maxQueueLength, $scope.restrictions.maxQueueTime);
-
+        $scope.result = $scope.queue.simulate($scope.restrictions);
     };
 
     // $scope.$watch('parameters', function () {

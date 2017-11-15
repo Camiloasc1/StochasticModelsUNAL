@@ -58,15 +58,15 @@ MMc.prototype.calc_Pn = function (n) {
     }
 };
 
-MMc.prototype.simulate = function (maxUsage, maxQueueLength, maxQueueTime) {
+MMc.prototype.simulate = function (restrictions) {
 
-    this.c = Math.ceil(this.la / (maxUsage * this.mu));
+    this.c = Math.ceil(this.la / (restrictions.maxUsage * this.mu));
 
-    while (this.calc_Lq() > maxQueueLength) {
+    while (this.calc_Lq() > restrictions.maxQueueLength) {
         this.c = this.c + 1;
     }
 
-    while (this.calc_Wq() > maxQueueTime) {
+    while (this.calc_Wq() > restrictions.maxQueueTime) {
         this.c = this.c + 1;
     }
 
