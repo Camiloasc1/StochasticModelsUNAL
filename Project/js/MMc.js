@@ -56,3 +56,17 @@ MMc.prototype.calc_Pn = function (n) {
         return res / (Math.pow(this.c, (n - this.c))) / factorial(this.c);
     }
 };
+
+MMc.prototype.simulate = function (restrictions) {
+    this.c = Math.ceil(this.la / (restrictions.maxUsage * this.mu));
+
+    while (this.calc_Lq() > restrictions.maxQueueLength) {
+        this.c = this.c + 1;
+    }
+
+    while (this.calc_Wq() > restrictions.maxQueueTime) {
+        this.c = this.c + 1;
+    }
+
+    return this.c;
+};
