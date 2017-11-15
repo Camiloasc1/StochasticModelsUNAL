@@ -39,12 +39,14 @@
             <div class="row">
                 <form class="form-horizontal">
                     <fieldset>
-                        <legend>Solution</legend>
-                        <label for="numServers" class="control-label">Number Of Servers</label>
-                        <input class="form-control" id="numServers" type="float" min="0"
-                               placeholder="Number Of Servers" ng-model="Q.c">
+                        <legend>Result</legend>
+                        <label for="result" class="control-label">Required Servers</label>
+                        <input class="form-control" ng-model="Q.c" id="result" type="number" placeholder="Required Servers" disabled="disabled"
+                               ng-model="result">
+                        <button ng-click="solve()" class="btn btn-primary btn-raised">
+                            Calculate
+                        </button>
                     </fieldset>
-                    <button ng-click="simulate()">Simulate</button>
                 </form>
             </div>
         </div>

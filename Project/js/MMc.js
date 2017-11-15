@@ -30,6 +30,7 @@ MMc.prototype.simulate = function(maxUsage,maxQueueLength, maxQueueTime){
         this.c = this.c + 1;
     }
 
+    return this.c;
 
 };
 

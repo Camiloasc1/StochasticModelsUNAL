@@ -7,14 +7,15 @@ app.controller('Calculator', ['$scope', function ($scope) {
     // The imposed restrictions to comply with
     $scope.restrictions = {maxUsage: 0.95, maxQueueLength: 5, maxQueueTime: 5.0};
     // servers list a.k.a shops in the shopping mall
-    $scope.servers = [{name: "", proportion: 1, serviceTime: 1.0, probability: 0.1, serviceRate: 60.0}];
+    $scope.servers = [{name: "", proportion: 1, serviceRate: 1.0, probability: 0.1}];
+    $scope.result = 0.0;
     $scope.Q = new MMc(30, 12, 5);
 
-    $scope.simulate = function(){
-
-        $scope.Q.simulate($scope.restrictions.maxUsage,$scope.restrictions.maxQueueLength, $scope.restrictions.maxQueueTime);
+    $scope.solve = function () {
+        $scope.result = $scope.Q.simulate($scope.restrictions.maxUsage,$scope.restrictions.maxQueueLength, $scope.restrictions.maxQueueTime);
 
     };
+
     // $scope.$watch('parameters', function () {
     //     if ($scope.parameters.arrivalTime !== 0.0) {
     //         $scope.parameters.arrivalRate = 60.0 / $scope.parameters.arrivalTime;
