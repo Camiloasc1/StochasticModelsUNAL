@@ -2,6 +2,7 @@
 var app = angular.module('SMProject', ['ngRoute']);
 
 app.controller('Calculator', ['$scope', function ($scope) {
+    $scope.selectAll = false;
     // The known parameters
     $scope.parameters = {arrivalRate: 1.0};
     // The imposed restrictions to comply with
@@ -23,36 +24,35 @@ app.controller('Calculator', ['$scope', function ($scope) {
 
     $scope.stores = [
         {
-            'name' : 'Jhon Doe',
-            'prob_arrival' : 0.5,
-            'service_time' : 2
+            'name': 'Jhon Doe',
+            'prob_arrival': 0.5,
+            'service_time': 2
         }
     ];
 
-    $scope.addNew = function(store){
+    $scope.addNew = function (store) {
         $scope.stores.push({
-            'name' : "",
-            'prob_arrival' : "",
-            'service_time' : ""
+            'name': "",
+            'prob_arrival': "",
+            'service_time': ""
         })
     };
 
-    $scope.remove = function(){
+    $scope.remove = function () {
         var newDataList = [];
         $scope.selectAll = false;
-        angular.forEach($scope.stores, function(store){
-            if(!store.selected){
+        angular.forEach($scope.stores, function (store) {
+            if (!store.selected) {
                 newDataList.push(store);
             }
         });
         $scope.stores = newDataList;
     };
 
-    $scope.chekAll = function(){
-      $scope.selectedAll = !$scope.selectedAll;
-      angular.forEach($scope.stores, function(store){
-          store.selected = $scope.selectedAll;
-      });
+    $scope.checkAll = function () {
+        angular.forEach($scope.stores, function (store) {
+            store.selected = $scope.selectAll;
+        });
     };
 }]);
 
