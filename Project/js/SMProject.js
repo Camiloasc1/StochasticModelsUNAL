@@ -8,7 +8,7 @@ app.controller('Calculator', ['$scope', function ($scope) {
     // The imposed restrictions to comply with
     $scope.restrictions = {maxUsage: 0.95, maxQueueLength: 5, maxQueueTime: 5.0};
     // servers list a.k.a shops in the shopping mall
-    $scope.servers = [{name: "", proportion: 1, serviceRate: 1.0, probability: 0.1}];
+    $scope.servers = [{name: "", proportion: 1, serviceRate: 1.0, selected: false, probability: 0.1}];
     $scope.result = 0.0;
     $scope.queue = new MMc(30, 12, 5);
 
@@ -22,16 +22,8 @@ app.controller('Calculator', ['$scope', function ($scope) {
     //     }
     // }, true);
 
-    $scope.stores = [
-        {
-            'name': 'Jhon Doe',
-            'prob_arrival': 0.5,
-            'service_time': 2
-        }
-    ];
-
-    $scope.addNew = function (store) {
-        $scope.stores.push({
+    $scope.addNew = function () {
+        $scope.servers.push({
             'name': "",
             'prob_arrival': "",
             'service_time': ""
@@ -39,19 +31,15 @@ app.controller('Calculator', ['$scope', function ($scope) {
     };
 
     $scope.remove = function () {
-        var newDataList = [];
         $scope.selectAll = false;
-        angular.forEach($scope.stores, function (store) {
-            if (!store.selected) {
-                newDataList.push(store);
-            }
+        $scope.servers = $scope.servers.filter(function (server) {
+            return !server.selected;
         });
-        $scope.stores = newDataList;
     };
 
     $scope.checkAll = function () {
-        angular.forEach($scope.stores, function (store) {
-            store.selected = $scope.selectAll;
+        angular.forEach($scope.servers, function (server) {
+            server.selected = $scope.selectAll;
         });
     };
 }]);

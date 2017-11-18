@@ -24,25 +24,25 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="store in stores">
+                        <tr ng-repeat="server in servers">
                             <td>
-                                <input type="checkbox" ng-model="store.selected"/>
+                                <input type="checkbox" ng-model="server.selected"/>
                             </td>
                             <td>
-                                <input type="text" class="form-control" ng-model="store.name" required/>
+                                <input type="text" class="form-control" ng-model="server.name" required/>
                             </td>
                             <td>
                                 <input type="number" step="any" min="0" max="1" class="form-control"
-                                       ng-model="store.prob_arrival" required/>
+                                       ng-model="server.prob_arrival" required/>
                             </td>
                             <td>
-                                <input type="number" class="form-control" ng-model="store.service_time" required/>
+                                <input type="number" class="form-control" ng-model="server.service_time" required/>
                             </td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="form-group">
-                        <button ng-disabled="!stores.length" ng-click="remove()" class="btn btn-danger pull-right">
+                        <button ng-disabled="!servers.length" ng-click="remove()" class="btn btn-danger pull-right">
                             <i class="material-icons">remove</i>
                         </button>
                         <button ng-click="addNew()" class="btn btn-primary pull-right">
@@ -70,9 +70,9 @@
                         <label for="maxUsage" class="control-label">Maximum Usage</label>
                         <input class="form-control" id="maxUsage" type="number" min="0" max="1" step="0.01"
                                placeholder="Maximum Usage" ng-model="restrictions.maxUsage">
-                        <label for="maxQueueTime" class="control-label">Maximum Average Time Spent in Queue</label>
+                        <label for="maxQueueTime" class="control-label">Maximum Time Spent Waiting</label>
                         <input class="form-control" id="maxQueueTime" type="number" min="0"
-                               placeholder="Maximum Average Time Spent in Queue" ng-model="restrictions.maxQueueTime">
+                               placeholder="Maximum Time Spent Waiting" ng-model="restrictions.maxQueueTime">
                         <label for="maxQueueLength" class="control-label">Maximum Number Of Cars Waiting In Line</label>
                         <input class="form-control" id="maxQueueLength" type="number" min="0"
                                placeholder="Maximum Number Of Cars Waiting In Line"
