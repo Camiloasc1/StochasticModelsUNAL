@@ -8,7 +8,7 @@ app.controller('Calculator', ['$scope', function ($scope) {
     // The imposed restrictions to comply with
     $scope.restrictions = {maxUsage: 0.95, maxQueueLength: 5, maxQueueTime: 5.0};
     // servers list a.k.a shops in the shopping mall
-    $scope.servers = [{name: "", proportion: 1, serviceRate: 1.0, selected: false, probability: 0.1}];
+    $scope.servers = [{name: "Store 1", proportion: 1, serviceRate: 1.0, selected: false, probability: 0.1}];
     $scope.result = 0.0;
     $scope.queue = new MMc(30, 12, 5);
 
@@ -23,11 +23,8 @@ app.controller('Calculator', ['$scope', function ($scope) {
     // }, true);
 
     $scope.addNew = function () {
-        $scope.servers.push({
-            'name': "",
-            'prob_arrival': "",
-            'service_time': ""
-        })
+        var name = "Store " + ($scope.servers.length + 1);
+        $scope.servers.push({name: name, proportion: 1, serviceRate: 1.0, selected: false, probability: 0.1})
     };
 
     $scope.remove = function () {
