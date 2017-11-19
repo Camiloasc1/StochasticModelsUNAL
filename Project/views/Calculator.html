@@ -32,11 +32,12 @@
                                 <input type="text" class="form-control" ng-model="server.name" required/>
                             </td>
                             <td>
-                                <input type="number" class="form-control" step="1" min="0" ng-model="server.proportion"
-                                       required/>
+                                <input type="number" class="form-control" step="any" min="0"
+                                       ng-model="server.proportion" required/>
                             </td>
                             <td>
-                                <input type="number" class="form-control" step="1" min="0" ng-model="server.serviceRate"
+                                <input type="number" class="form-control" step="any" min="0"
+                                       ng-model="server.serviceRate"
                                        required/>
                             </td>
                         </tr>
@@ -92,7 +93,7 @@
                         <legend>Result</legend>
                         <label for="result" class="control-label">Required Servers</label>
                         <input class="form-control" id="result" type="number" placeholder="Required Servers"
-                               disabled="disabled" ng-model="result">
+                               ng-model="result" readonly>
                     </fieldset>
                 </form>
             </div>
