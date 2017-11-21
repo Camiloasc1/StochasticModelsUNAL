@@ -32,12 +32,11 @@
                                 <input type="text" class="form-control" ng-model="server.name" required/>
                             </td>
                             <td>
-                                <input type="number" class="form-control" step="any" min="0"
-                                       ng-model="server.proportion" required/>
+                                <input type="number" class="form-control" min="0" ng-model="server.proportion"
+                                       required/>
                             </td>
                             <td>
-                                <input type="number" class="form-control" step="any" min="0"
-                                       ng-model="server.serviceRate"
+                                <input type="number" class="form-control" min="0" ng-model="server.serviceRate"
                                        required/>
                             </td>
                         </tr>
@@ -60,8 +59,12 @@
                     <fieldset>
                         <legend>Parameters</legend>
                         <label for="arrivalRate" class="control-label">Arrival Rate</label>
-                        <input class="form-control" id="arrivalRate" type="number" min="1" step="1"
+                        <input class="form-control" id="arrivalRate" type="number" min="0"
                                placeholder="Arrival Rate (clients per minute)" ng-model="parameters.arrivalRate">
+                        <label for="visitedStores" class="control-label">Number of stores visited per client</label>
+                        <input class="form-control" id="visitedStores" type="number" min="0"
+                               placeholder="Number of stores visited per client (average)"
+                               ng-model="parameters.visitedStores">
                     </fieldset>
                 </form>
             </div>
