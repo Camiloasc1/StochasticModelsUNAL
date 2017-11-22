@@ -2,6 +2,63 @@
 var app = angular.module('SMProject', ['ngRoute']);
 
 app.controller('Calculator', ['$scope', function ($scope) {
+
+    function lotBuilding(id,target,text,color){
+
+        //General Element
+        var canvas = document.createElement('canvas');
+        canvas.height = 300;
+        canvas.width  = 200;
+        canvas.id = "ParkingLot"+1;
+
+        // Context
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = "rgba(0,0,0,.2)";
+        ctx.strokeStyle="black";
+        ctx.fillRect(0,0,180,300);
+        ctx.fillStyle = color;
+
+        if(id == 0){
+            ctx.fillRect(0,300*(1-target),180,300);
+        }
+
+        if(id == 1){
+            ctx.fillRect(0,300*(1-(target/$scope.restrictions.maxQueueTime)),180,300);
+        }
+
+        if(id == 2){
+
+            ctx.fillRect(0,300*(1-(target/$scope.restrictions.maxQueueLength)),180,300);
+
+        }
+
+
+
+        ctx.font = "30px Comic Sans MS";
+        ctx.fillStyle = "black";
+        ctx.textAlign = "center";
+
+
+        if(id == 0) {
+            ctx.fillText((target * 100).toFixed(1) + "%", (canvas.width-10) / 2, canvas.height / 2);
+        }
+
+        if(id == 1){
+            ctx.fillText(target.toFixed(1), (canvas.width -10)/ 2, canvas.height / 2);
+        }
+
+        if(id == 2){
+            ctx.fillText(target.toFixed(1), (canvas.width -10)/ 2, canvas.height / 2);
+        }
+        ctx.font = "15px Comic Sans MS";
+        ctx.fillText(text, (canvas.width-10)/2, canvas.height/2 + 50);
+        var parkingLot = document.getElementById('parkingLot');
+        parkingLot.appendChild(canvas);
+        $scope.canvas.push(canvas);
+    }
+
+    $scope.canvas = []
+
     $scope.selectAll = false;
     // The known parameters
     $scope.parameters = {arrivalRate: 1.0, visitedStores: 5.0};
@@ -37,8 +94,19 @@ app.controller('Calculator', ['$scope', function ($scope) {
     };
 
     $scope.solve = function () {
+
+        var parkingLot = document.getElementById('parkingLot');
+        for(var i = 0; i < $scope.canvas.length;i++){
+            parkingLot.removeChild($scope.canvas[i]);
+        }
+        $scope.canvas = [];
+
         var queue = new MMc($scope.parameters.arrivalRate, $scope.calcMu(), 1);
         $scope.result = queue.simulate($scope.restrictions);
+
+        lotBuilding(0,queue.calc_usage(),"Parking Utilization","#99ffcc");
+        lotBuilding(1,queue.calc_Wq(), "Time Spent on Queue", "#99ccff");
+        lotBuilding(2,queue.calc_Lq(), "Queue Length", "#ff9999");
     };
 
     $scope.addNew = function () {
