@@ -18,6 +18,10 @@ MMc.prototype.calc_r = function () {
     return this.la / this.mu;
 };
 
+MMc.prototype.calc_usage = function(){
+    return this.la/(this.c*this.mu);
+};
+
 MMc.prototype.calc_rho = function () {
     return this.calc_r() / this.c;
 };
